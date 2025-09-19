@@ -1,6 +1,6 @@
 export default function ExtensionStatus ({name , isActive , isClick}:any){
 
-    const activeClasses = isActive ? 'bg-orange-600 text-black/90' : ' bg-gray-700/90 text-white'
+    const activeClasses = isActive ? 'bg-orange-600 text-black/90 font-medium' : ' bg-gray-700/90 text-white font-medium'
 
 
     return (
