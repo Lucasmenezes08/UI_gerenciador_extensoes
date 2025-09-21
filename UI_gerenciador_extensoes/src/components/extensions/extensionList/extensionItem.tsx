@@ -2,6 +2,7 @@ import { Switch } from "@mui/material";
 import { RemoveBtn } from "./commonExtensionUI/removeBtn";
 import { orange } from "@mui/material/colors";
 import styled from "@emotion/styled";
+import { useFilter } from "../../../store/useFilter";
 
 
 
@@ -16,7 +17,7 @@ const OrangeSwitch = styled(Switch)(() => ({
 
 
 export default function ExtensionItem ({extension , logos}:any){
-
+  const {changeActive} = useFilter();
     return (
         <section className="h-full flex flex-col justify-center bg-gray-800/90 border-solid border-gray-700 border-1 p-5 rounded-2xl shadow-2xl">
           <section className="flex-grow">
@@ -32,7 +33,7 @@ export default function ExtensionItem ({extension , logos}:any){
 
             <section className="flex justify-between">
                 <RemoveBtn name={extension.name}/>
-                <OrangeSwitch/>
+                <OrangeSwitch onChange={() => changeActive(extension.name)}  checked={extension.isActive}/>
             </section>
         </section>
     )

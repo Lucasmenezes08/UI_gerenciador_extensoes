@@ -7,16 +7,26 @@ import { useEffect } from 'react';
 
 export default function ExtensionList (){
 
-    const {items , setItems} = useFilter();
+    const {items , filter , setItems} = useFilter();
 
     useEffect(() => {
          setItems(data);
     },[setItems])
+
+    const filteredItems = items.filter(item => {
+        if (filter === 'Active'){
+            return item.isActive === true;
+        }
+        if (filter === 'Inactive'){
+            return item.isActive === false;
+        }
+        return true;
+    })
    
 
     return (
         <section className='w-full grid grid-cols-1 md:grid-cols-3 gap-4'>
-            {items.map((item) => {
+            {filteredItems.map((item) => {
 
             const logosSrc = logos[item.name]
                 
