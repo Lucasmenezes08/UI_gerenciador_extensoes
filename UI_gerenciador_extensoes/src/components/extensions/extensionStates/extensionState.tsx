@@ -6,7 +6,7 @@ export default function ExtensionState (){
 
 
     return (
-        <section className="flex flex-row justify-between items-center">
+        <section className="flex flex-col lg:flex-row justify-between items-center gap-4">
             <h2 className="text-3xl font-semibold text-white/90 text-shadow-2xl">Extensions List</h2>
 
             <section className="flex flex-row gap-2">
