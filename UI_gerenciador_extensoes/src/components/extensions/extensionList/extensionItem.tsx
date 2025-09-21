@@ -31,7 +31,7 @@ export default function ExtensionItem ({extension , logos}:any){
           </section>
 
             <section className="flex justify-between">
-                <RemoveBtn/>
+                <RemoveBtn name={extension.name}/>
                 <OrangeSwitch/>
             </section>
         </section>

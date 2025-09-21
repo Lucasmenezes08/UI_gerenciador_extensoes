@@ -4,7 +4,7 @@ export default function ExtensionStatus ({name , isActive , isClick}:any){
 
 
     return (
-        <button onClick={isClick} className={`flex items-center justify-center px-5 py-1 shadow-2xl rounded-2xl cursor-pointer ${activeClasses}`}>
+        <button onClick={isClick} className={`flex items-center justify-center px-5 py-1 shadow-2xl rounded-2xl cursor-pointer transition-colors ease-in-out delay-100 ${activeClasses}`}>
             {name}
         </button>
     )
