@@ -1,6 +1,8 @@
-export default function ExtensionStatus ({name , isActive , isClick}:any){
+import { useFilter } from "../../../store/useFilter"
 
-    const activeClasses = isActive ? 'bg-orange-600 text-black/90 font-medium' : ' bg-gray-700/90 text-white font-medium'
+export default function ExtensionStatus ({name , isActive , isClick}:any){
+    const {currentTheme} = useFilter();
+    const activeClasses = isActive ? 'bg-orange-600 text-black/90 font-medium' : ` ${currentTheme === 'dark' ?'bg-gray-700/90 text-white' : 'bg-white text-black'} font-medium`
 
 
     return (

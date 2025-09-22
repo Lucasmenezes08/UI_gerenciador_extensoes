@@ -17,16 +17,16 @@ const OrangeSwitch = styled(Switch)(() => ({
 
 
 export default function ExtensionItem ({extension , logos}:any){
-  const {changeActive} = useFilter();
+  const {changeActive, currentTheme} = useFilter();
     return (
-        <section className="h-full flex flex-col justify-center bg-gray-800/90 border-solid border-gray-700 border-1 p-5 rounded-2xl shadow-2xl">
+        <section className={`h-full flex flex-col justify-center ${currentTheme === 'dark' ? 'bg-gray-800/90 border-solid border-gray-700 border-1' : 'bg-white border-solid border-gray-200 border-1'} p-5 rounded-2xl shadow-2xl`}>
           <section className="flex-grow">
             <section className="flex items-start gap-5">
                 <img className="w-15 h-15" src={logos}></img>
 
                 <section className="flex flex-col gap-1 mb-6">
-                    <p className="text-lg text-white font-semibold text-shadow-xl">{extension.name}</p>
-                    <p className="text-sm text-white/50 font-medium">{extension.description}</p>
+                    <p className={`text-lg ${currentTheme === 'dark' ? 'text-white' : 'text-black'} font-semibold text-shadow-xl`}>{extension.name}</p>
+                    <p className={`text-sm ${currentTheme === 'dark' ? 'text-white/50' : 'text-black/50'} font-medium`}>{extension.description}</p>
                 </section>
             </section>
           </section>
