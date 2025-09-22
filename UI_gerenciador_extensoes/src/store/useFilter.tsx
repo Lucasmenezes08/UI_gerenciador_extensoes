@@ -1,4 +1,5 @@
 import { create } from 'zustand'
+import { persist } from 'zustand/middleware';
 
 
 type FilterState = {
@@ -12,19 +13,27 @@ type FilterState = {
   setTheme : (newTheme: 'dark' | 'light') => void;
 };
 
-export const useFilter = create<FilterState>((set) => ({
-    items : [],
-    filter: 'All',
-    currentTheme : 'dark',
-    setItems: (items:any[]) => set({items : items}),
-    remove : (itemRemove:string) => set((state:any) => ({
-        items: state.items.filter((item:any) => item.name !== itemRemove)
-    })),
-    changeActive : (itemActive:string) => set((state:any) => ({
-      items: state.items.map((item:any) => item.name === itemActive ? {...item , isActive : !item.isActive } : item)
-    })),
+export const useFilter = create<FilterState>()(
+    persist(
+      (set) => ({
+        items : [],
+        filter: 'All',
+        currentTheme : 'dark',
+        setItems: (items:any[]) => set({items : items}),
+        remove : (itemRemove:string) => set((state:any) => ({
+            items: state.items.filter((item:any) => item.name !== itemRemove)
+        })),
+        changeActive : (itemActive:string) => set((state:any) => ({
+          items: state.items.map((item:any) => item.name === itemActive ? {...item , isActive : !item.isActive } : item)
+        })),
 
-    setFilter: (newFilter : 'All' | 'Active' | 'Inactive') => set({filter : newFilter}),
+        setFilter: (newFilter : 'All' | 'Active' | 'Inactive') => set({filter : newFilter}),
 
-    setTheme: (newTheme : 'dark' | 'light') => set({currentTheme : newTheme}),
-}));
+        setTheme: (newTheme : 'dark' | 'light') => set({currentTheme : newTheme}),
+    }),
+    {
+      name : 'filter-storage',
+      partialize: (state) => ({currentTheme: state.currentTheme}),
+    }
+  )
+);
